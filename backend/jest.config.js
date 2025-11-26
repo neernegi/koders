@@ -1,5 +1,10 @@
 export default {
   testEnvironment: "node",
   transform: {},
-  setupFilesAfterEnv: ["<rootDir>/tests/setup.js"],
+
+  // Load environment variables from test.env
+  setupFiles: ["dotenv/config"],
+
+  // Setup DB/Test Lifecycle
+  setupFilesAfterEnv: ["<rootDir>/tests/setup.js"]
 };

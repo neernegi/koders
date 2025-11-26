@@ -11,11 +11,11 @@ import { bookingLogger } from '../middleware/bookingLogger.js';
 
 const router = express.Router();
 
+// FIXED: Apply protect middleware to all routes
 router.use(protect);
 router.use(bookingLogger);
 
 router.post('/', createBooking);
-
 router.get('/my-bookings', getUserBookings);
 router.get('/:id', getBooking);
 router.put('/:id/cancel', cancelBooking);

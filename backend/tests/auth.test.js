@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../src/server.js';
+import app from '../src/app.js';
 import { connectDB, closeDB, clearDB, generateAuthToken } from './setup.js';
 import User from '../src/models/user.model.js';
 
@@ -29,9 +29,9 @@ describe('Auth API', () => {
         .send(userData)
         .expect(201);
 
-      expect(response.body).toHaveProperty('token');
-      expect(response.body.user).toHaveProperty('email', userData.email);
-      expect(response.body.user).toHaveProperty('role', 'user');
+      expect(response.body.data).toHaveProperty('token'); 
+      expect(response.body.data.user).toHaveProperty('email', userData.email);
+      expect(response.body.data.user).toHaveProperty('role', 'user');
     });
 
     it('should not register user with existing email', async () => {
@@ -48,7 +48,7 @@ describe('Auth API', () => {
         .send(userData)
         .expect(400);
 
-      expect(response.body).toHaveProperty('message', 'User already exists with this email');
+      expect(response.body).toHaveProperty('message', 'User already exists with this email'); 
     });
   });
 
@@ -70,8 +70,8 @@ describe('Auth API', () => {
         })
         .expect(200);
 
-      expect(response.body).toHaveProperty('token');
-      expect(response.body.user).toHaveProperty('email', 'test@example.com');
+      expect(response.body.data).toHaveProperty('token');
+      expect(response.body.data.user).toHaveProperty('email', 'test@example.com');
     });
 
     it('should not login with invalid credentials', async () => {
@@ -83,7 +83,7 @@ describe('Auth API', () => {
         })
         .expect(401);
 
-      expect(response.body).toHaveProperty('message', 'Invalid credentials');
+      expect(response.body).toHaveProperty('message', 'Invalid email or password'); 
     });
   });
 });
