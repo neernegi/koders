@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./components/Layout/Layout";
-import ProtectedRoute from "./components/Common/ProtectedRoute";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
 // Pages
 import Home from "./pages/Home";
