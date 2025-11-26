@@ -1,17 +1,13 @@
-import express from "express";
-import connectDB from "./config/db.js";
-
-// Load environment variables (optional if already loaded in db.js)
+// server.js
 import dotenv from "dotenv";
-dotenv.config();
+import connectDB from "./config/db.js";
+import app from "./app.js";  // import the existing app
 
-const app = express();
+dotenv.config();
 
 // Connect to MongoDB
 connectDB();
 
 const PORT = process.env.PORT || 5000;
-
-app.get("/", (req, res) => res.send("API running..."));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

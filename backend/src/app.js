@@ -10,19 +10,18 @@ import bookingRoutes from "./routes/booking.route.js";
 dotenv.config();
 
 const app = express();
+
 app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health check route - MAKE SURE THIS COMES BEFORE OTHER ROUTES
+// Health check
 app.get('/api/health', (req, res) => {
-  res.json({
-    success: true,
-    message: 'EventEase API is running',
-    timestamp: new Date().toISOString()
-  });
+  res.json({ success: true, message: 'EventEase API is running' });
 });
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/bookings", bookingRoutes);
